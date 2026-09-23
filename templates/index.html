@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="site-header" id="home">
+  <nav class="nav container" aria-label="Main navigation">
+    <a class="brand" href="#home">YS<span>.</span></a>
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false"><i
+        class="fa-solid fa-bars"></i></button>
+    <div class="nav-links">
+      <a class="active" href="#home">Home</a><a href="#about">About</a><a href="#education">Education</a><a
+        href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+<main>
+  <section class="hero section container reveal">
+    <div class="hero-copy">
+      <p class="eyebrow">Hello, I’m</p>
+      <h1>M. <span>Yuvashankar</span></h1>
+      <h2>B.Tech AI&amp;DS | Python Full-Stack Developer</h2>
+      <p class="lead">A motivated Artificial Intelligence and Data Science graduate who enjoys building responsive,
+        user-friendly web applications and solving real-world problems through technology.</p>
+      <div class="hero-actions"><a class="btn primary" href="#projects">View Projects <i
+            class="fa-solid fa-arrow-right"></i></a><a class="btn outline"
+          href="{{ url_for('download_resume') }}">Download Resume <i class="fa-solid fa-download"></i></a></div>
+      <div class="socials"><a href="mailto:yuvabala54@gmail.com" aria-label="Email"><i
+            class="fa-solid fa-envelope"></i></a><span class="social-placeholder"
+          title="Social links will be added later"><i class="fa-brands fa-github"></i></span><span
+          class="social-placeholder" title="Social links will be added later"><i
+            class="fa-brands fa-linkedin-in"></i></span></div>
+    </div>
+    <div class="hero-art">
+      <div class="orb orb-one"></div>
+      <div class="orb orb-two"></div>
+      <div class="profile-placeholder"><i class="fa-solid fa-user"></i><small>Profile photo<br>coming soon</small></div>
+      <div class="floating-badge"><i class="fa-solid fa-code"></i><span>Build. Learn.<br>Grow.</span></div>
+    </div>
+  </section>
+  <section class="section" id="about">
+    <div class="container split reveal">
+      <div>
+        <p class="eyebrow">01 — About me</p>
+        <h2 class="section-title">Turning curiosity into <span>useful software.</span></h2>
+      </div>
+      <div class="about-copy">
+        <p>I am a B.Tech graduate in Artificial Intelligence and Data Science with Python Full Stack Development
+          training. I have practical knowledge of frontend and backend web development using HTML, CSS, JavaScript,
+          Python, Flask, Django, and MySQL.</p>
+        <p>I am an adaptable fresher seeking opportunities as a Python Developer, Full Stack Developer, or Software
+          Developer. I’m eager to learn, contribute to development teams, and continuously strengthen my technical
+          skills.</p><a class="text-link" href="#contact">Let’s connect <i
+            class="fa-solid fa-arrow-up-right-from-square"></i></a>
+      </div>
+    </div>
+  </section>
+  <section class="section muted" id="education">
+    <div class="container reveal">
+      <p class="eyebrow">02 — Education</p>
+      <h2 class="section-title">Academic <span>foundation.</span></h2>
+      <article class="timeline-card">
+        <div class="timeline-dot"></div>
+        <div>
+          <p class="date">2026</p>
+          <h3>B.Tech — Artificial Intelligence &amp; Data Science</h3>
+          <p>PET Engineering College · Anna University</p><span class="tag">Graduate</span>
+        </div>
+      </article>
+    </div>
+  </section>
+  <section class="section" id="skills">
+    <div class="container reveal">
+      <p class="eyebrow">03 — Skills</p>
+      <h2 class="section-title">Tools I’m learning <span>to build with.</span></h2>
+      <div class="skill-grid">
+        <article class="skill-card"><i class="fa-solid fa-laptop-code"></i>
+          <h3>Web development</h3>
+          <p>HTML · CSS · JavaScript</p>
+        </article>
+        <article class="skill-card"><i class="fa-brands fa-python"></i>
+          <h3>Python stack</h3>
+          <p>Python · Flask · Django</p>
+        </article>
+        <article class="skill-card"><i class="fa-solid fa-database"></i>
+          <h3>Data</h3>
+          <p>MySQL</p>
+        </article>
+        <article class="skill-card"><i class="fa-solid fa-lightbulb"></i>
+          <h3>Strengths</h3>
+          <p>Problem solving · Adaptability · Continuous learning</p>
+        </article>
+      </div>
+      <p class="note"><i class="fa-solid fa-circle-info"></i> More skills will be added from your resume.</p>
+    </div>
+  </section>
+  <section class="section muted" id="projects">
+    <div class="container reveal">
+      <p class="eyebrow">04 — Projects</p>
+      <h2 class="section-title">Work that tells my <span>story.</span></h2>
+      <div class="project-grid">
+        <article class="project-card">
+          <div class="project-meta"><span class="tag">Python • Django</span></div>
+          <h3>Student Attendance Management System</h3>
+          <p>Designed a web-based attendance tracking system for students using Django on the backend with a custom
+            front-end interface to record, update, and retrieve attendance data.</p>
+          <div class="project-links">
+            <span class="project-status muted-status">GitHub link coming soon</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-meta"><span class="tag">HTML • CSS • Bootstrap</span></div>
+          <h3>Agriculture Marketing Website</h3>
+          <p>Developed a responsive front-end website to help connect agricultural producers with buyers and markets
+            using a mobile-friendly structured layout.</p>
+          <div class="project-links">
+            <a class="btn project-btn" href="https://github.com/Yuvashankar-bit/AgriMarket-Connect" target="_blank"
+              rel="noopener">View Project</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-meta"><span class="tag">Python • Flask</span></div>
+          <h3>Personal Portfolio Website</h3>
+          <p>Built a personal portfolio website using Flask to showcase projects, skills, and contact information with
+            clean routes and templates.</p>
+          <div class="project-links">
+            <span class="project-status muted-status">GitHub link coming soon</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-meta"><span class="tag">HTML • CSS • JavaScript</span></div>
+          <h3>Mini Amazon Clone</h3>
+          <p>Developed a front-end e-commerce interface replicating core Amazon-style features, including product
+            listings and a shopping layout with responsive UI design.</p>
+          <div class="project-links">
+            <span class="project-status muted-status">GitHub link coming soon</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-meta"><span class="tag">Python • MySQL</span></div>
+          <h3>Employee Record Checker System</h3>
+          <p>Built a Python application backed by a MySQL database to store, verify, and retrieve employee records with
+            lookup and validation functionality.</p>
+          <div class="project-links">
+            <a class="btn project-btn" href="https://github.com/Yuvashankar-bit/EmployeeHub" target="_blank"
+              rel="noopener">View Project</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="section muted" id="certifications">
+    <div class="container reveal">
+      <p class="eyebrow">06 — Certifications &amp; achievements</p>
+      <h2 class="section-title">Milestones to <span>celebrate.</span></h2>
+      <div class="empty-state compact"><i class="fa-solid fa-award"></i>
+        <h3>Details coming soon</h3>
+        <p>Certifications and achievements will be added after your resume is available.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section contact-section" id="contact">
+    <div class="container contact-layout reveal">
+      <div>
+        <p class="eyebrow">07 — Contact</p>
+        <h2 class="section-title">Let’s build something <span>meaningful.</span></h2>
+        <p>Have an opportunity or a project idea? I’d be happy to hear from you.</p>
+        <div class="contact-list"><a href="mailto:yuvabala54@gmail.com?subject=Portfolio%20Inquiry"><i
+              class="fa-solid fa-envelope"></i><span>yuvabala54@gmail.com</span></a><a href="tel:+919003756730"><i
+              class="fa-solid fa-phone"></i><span>+91 9003756730</span></a>
+          <div><i class="fa-solid fa-location-dot"></i><span>Tisaiyanvilai, Tirunelveli District, Tamil Nadu</span>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" action="{{ url_for('submit_contact') }}" method="post"><label
+          for="name">Name</label><input id="name" name="name" required maxlength="100"><label
+          for="email">Email</label><input id="email" name="email" type="email" required maxlength="254"><label
+          for="subject">Subject</label><input id="subject" name="subject" required maxlength="150"><label
+          for="message">Message</label><textarea id="message" name="message" rows="5" required
+          maxlength="2000"></textarea><button class="btn primary" type="submit">Send message <i
+            class="fa-solid fa-paper-plane"></i></button></form>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="container footer-inner">
+    <div><a class="brand" href="#home">MY<span>.</span></a>
+      <p>B.Tech AI&amp;DS | Python Full-Stack Developer</p>
+    </div>
+    <div class="footer-links"><a href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a><a
+        href="#projects">Projects</a><a href="#contact">Contact</a></div>
+    <div class="socials"><a href="mailto:yuvabala54@gmail.com" aria-label="Email"><i
+          class="fa-solid fa-envelope"></i></a><span class="social-placeholder"><i
+          class="fa-brands fa-github"></i></span><span class="social-placeholder"><i
+          class="fa-brands fa-linkedin-in"></i></span></div>
+  </div>
+  <div class="container copyright">© <span id="year"></span> M. Yuvashankar. All Rights Reserved.</div>
+</footer>
+<button class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+{% endblock %}

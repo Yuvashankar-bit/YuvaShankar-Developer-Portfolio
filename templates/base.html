@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="Portfolio of M. Yuvashankar, B.Tech AI&DS graduate and Python Full-Stack Developer.">
+  <meta property="og:title" content="M. Yuvashankar | Python Full-Stack Developer">
+  <meta property="og:description" content="B.Tech AI&DS graduate building responsive, user-friendly web applications.">
+  <meta property="og:type" content="website">
+  <title>{% block title %}M. Yuvashankar | Python Full-Stack Developer{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}<div class="flash-stack" aria-live="polite">{% for category, message in messages %}<div
+      class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
