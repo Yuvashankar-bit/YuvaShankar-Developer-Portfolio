@@ -1,3 +1,4 @@
+import os
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -18,7 +19,7 @@ def send_contact_email(name, email, subject, message):
 
     if not host or not username or not password or not receiver:
         app.logger.warning('SMTP settings are incomplete; contact email was not sent.')
-        return False
+        return 'missing-config'
 
     msg = MIMEMultipart()
     msg['From'] = username
@@ -38,10 +39,10 @@ def send_contact_email(name, email, subject, message):
             server.starttls()
             server.login(username, password)
             server.send_message(msg)
-        return True
+        return 'sent'
     except Exception:
         app.logger.exception('Failed to send contact email through SMTP.')
-        return False
+        return 'smtp-error'
 
 
 @app.get('/')
@@ -71,8 +72,11 @@ def submit_contact():
     sent = send_contact_email(name, email, subject, message)
     app.logger.info('Contact form received from %s (%s): %s', name, email, subject)
 
-    if not sent:
+    if sent == 'missing-config':
         flash('Your message was received, but the email delivery is not configured yet. Please set your SMTP details in .env.', 'error')
+        return redirect(url_for('index') + '#contact')
+    if sent == 'smtp-error':
+        flash('Your message was received, but the email service could not deliver it. Please try again later.', 'error')
         return redirect(url_for('index') + '#contact')
 
     flash('Thanks for reaching out! Your message was received.', 'success')
@@ -99,4 +103,8 @@ def server_error(_error):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(
+        debug=True,
+        host=os.getenv('FLASK_HOST', '127.0.0.1'),
+        port=int(os.getenv('FLASK_PORT', '8000')),
+    )
