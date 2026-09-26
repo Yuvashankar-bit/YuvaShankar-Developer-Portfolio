@@ -1,13 +1,27 @@
 :root {
-    --ink: #162033;
-    --muted: #667085;
-    --brand: #635bff;
-    --brand-dark: #4b43d6;
-    --mint: #dff8ee;
-    --line: #e8eaf0;
-    --surface: #f7f8fc;
-    --white: #fff;
-    --shadow: 0 20px 60px rgba(30, 38, 70, .1)
+    --ink: #edf3ff;
+    --muted: #a3b4cf;
+    --brand: #7d6dff;
+    --brand-dark: #6555f2;
+    --mint: rgba(86, 197, 156, 0.16);
+    --line: rgba(148, 163, 184, 0.2);
+    --surface: #101827;
+    --surface-2: #0f172a;
+    --white: #0b1220;
+    --shadow: 0 20px 60px rgba(2, 6, 23, .5)
+}
+
+body.light-mode {
+    --ink: #0f172a;
+    --muted: #475569;
+    --brand: #6c5ce7;
+    --brand-dark: #5647d8;
+    --mint: rgba(13, 148, 136, 0.12);
+    --line: rgba(148, 163, 184, 0.45);
+    --surface: #edf4ff;
+    --surface-2: #ffffff;
+    --white: #f8fafc;
+    --shadow: 0 20px 60px rgba(15, 23, 42, .12)
 }
 
 * {
@@ -24,7 +38,8 @@ body {
     color: var(--ink);
     font-family: 'DM Sans', sans-serif;
     line-height: 1.6;
-    background: var(--white)
+    background: var(--white);
+    transition: background 0.25s ease, color 0.25s ease
 }
 
 h1,
@@ -58,13 +73,13 @@ a {
     position: fixed;
     z-index: 10;
     inset: 0 0 auto;
-    background: rgba(255, 255, 255, .9);
+    background: rgba(11, 18, 32, .82);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid transparent
 }
 
 .site-header.scrolled {
-    box-shadow: 0 5px 25px rgba(20, 30, 60, .08);
+    box-shadow: 0 5px 25px rgba(15, 23, 42, .35);
     border-color: var(--line)
 }
 
@@ -73,6 +88,45 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-left: auto;
+    margin-right: 1rem
+}
+
+.theme-toggle,
+.menu-toggle {
+    border: 1px solid var(--line);
+    background: rgba(15, 23, 42, 0.3);
+    color: var(--ink);
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: .25s ease
+}
+
+.theme-toggle:hover,
+.menu-toggle:hover {
+    border-color: var(--brand);
+    color: var(--brand);
+    transform: translateY(-2px)
+}
+
+.theme-toggle i,
+.menu-toggle i {
+    font-size: 1rem
+}
+
+body.light-mode .theme-toggle,
+body.light-mode .menu-toggle {
+    background: rgba(255, 255, 255, 0.75)
 }
 
 .brand {
@@ -107,10 +161,6 @@ a {
 
 .menu-toggle {
     display: none;
-    border: 0;
-    background: none;
-    font-size: 1.4rem;
-    color: var(--ink)
 }
 
 .hero {
@@ -181,7 +231,8 @@ a {
 
 .btn.outline {
     border-color: var(--line);
-    background: white
+    background: transparent;
+    color: var(--ink)
 }
 
 .btn.outline:hover {
@@ -203,7 +254,9 @@ a {
     border-radius: 50%;
     display: grid;
     place-items: center;
-    transition: .2s
+    transition: .2s;
+    background: var(--surface-2);
+    color: var(--ink)
 }
 
 .socials a:hover {
@@ -218,32 +271,73 @@ a {
 
 .hero-art {
     position: relative;
-    min-height: 450px;
+    width: min(100%, 400px);
+    height: 400px;
     display: grid;
-    place-items: center
+    place-items: center;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: #dfe6ef;
+    box-shadow: inset 0 0 0 12px rgba(255, 255, 255, 0.28);
+}
+
+body.light-mode .hero-art {
+    background: linear-gradient(135deg, #ecf4ff, #dfe8f8);
+    box-shadow: inset 0 0 0 12px rgba(255, 255, 255, 0.8)
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 8px solid rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow);
+    position: relative;
+    z-index: 1;
+    background: #dfe6ef;
 }
 
 .profile-placeholder {
-    width: 280px;
-    height: 340px;
-    border-radius: 48% 48% 18px 18px;
-    background: linear-gradient(145deg, #dff8ee, #dfe0ff);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--brand);
-    font-size: 4rem;
-    box-shadow: var(--shadow);
-    position: relative;
-    z-index: 1
+    display: none
 }
 
-.profile-placeholder small {
-    font-size: .8rem;
-    text-align: center;
-    color: var(--muted);
-    margin-top: 1rem
+.hero-copy h2,
+.hero-copy .lead,
+.section-title,
+.about-copy,
+.timeline-card p,
+.skill-card p,
+.project-card p,
+.contact-section p,
+.footer p,
+.copyright {
+    color: var(--ink)
+}
+
+.hero-copy .lead,
+.about-copy,
+.timeline-card p,
+.skill-card p,
+.project-card p,
+.contact-section p,
+.footer p,
+.copyright {
+    opacity: .9
+}
+
+.timeline-card h3,
+.skill-card h3,
+.project-card h3,
+.company-name h3,
+.company-brand h3,
+.certificate-title-wrap h3 {
+    color: var(--ink)
+}
+
+.section-title,
+.hero-copy h2 {
+    color: var(--ink)
 }
 
 .orb {
@@ -284,6 +378,10 @@ a {
     font-size: .85rem
 }
 
+body.light-mode .floating-badge {
+    background: rgba(255, 255, 255, 0.9)
+}
+
 .floating-badge i {
     color: var(--brand);
     font-size: 1.5rem
@@ -319,10 +417,10 @@ a {
     display: flex;
     gap: 1.5rem;
     padding: 2rem;
-    background: white;
+    background: var(--surface-2);
     border: 1px solid var(--line);
     border-radius: 14px;
-    box-shadow: 0 10px 30px #1e264008;
+    box-shadow: 0 10px 30px rgba(2, 6, 23, .4);
     margin-top: 2rem
 }
 
@@ -371,7 +469,8 @@ a {
     padding: 1.6rem;
     border: 1px solid var(--line);
     border-radius: 14px;
-    transition: .25s
+    transition: .25s;
+    background: var(--surface-2)
 }
 
 .skill-card:hover {
@@ -414,14 +513,14 @@ a {
     padding: 1.6rem;
     border: 1px solid var(--line);
     border-radius: 16px;
-    background: white;
-    box-shadow: 0 12px 30px rgba(30, 38, 70, .04);
+    background: var(--surface-2);
+    box-shadow: 0 12px 30px rgba(2, 6, 23, .25);
     transition: .25s
 }
 
 .project-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 25px 50px rgba(30, 38, 70, .08);
+    box-shadow: 0 25px 50px rgba(15, 23, 42, .45);
     border-color: #cec9ff
 }
 
@@ -472,11 +571,12 @@ a {
 
 .empty-state {
     margin-top: 2rem;
-    border: 1px dashed #c7cad8;
+    border: 1px dashed rgba(148, 163, 184, 0.35);
     border-radius: 16px;
     text-align: center;
     padding: 4rem 1.5rem;
-    color: var(--muted)
+    color: var(--muted);
+    background: rgba(15, 23, 42, .35)
 }
 
 .empty-state i {
@@ -493,24 +593,399 @@ a {
     padding: 3rem
 }
 
+.certificate-card {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .9rem;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--surface-2);
+    box-shadow: 0 12px 30px rgba(2, 6, 23, .25);
+    transition: .25s;
+    overflow: hidden;
+    color: var(--ink);
+}
+
+.course-card {
+    padding: 1.4rem 1.5rem;
+}
+
+.certificate-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 50px rgba(15, 23, 42, .45);
+    border-color: #cec9ff;
+}
+
+.certificate-toggle {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: inherit;
+    text-align: left;
+    padding: 1.4rem 1.5rem 1rem;
+    cursor: pointer;
+    font: inherit;
+}
+
+.certificate-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.certificate-summary h3 {
+    margin: 0;
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+}
+
+.eyebrow.small {
+    margin: 0 0 0.5rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+}
+
+.toggle-label {
+    background: rgba(125, 109, 255, 0.12);
+    border: 1px solid rgba(125, 109, 255, 0.3);
+    color: #b7adff;
+    border-radius: 999px;
+    padding: 0.45rem 0.8rem;
+    font-size: 0.76rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.certificate-short-desc {
+    margin: 0.8rem 0 0;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.certificate-short-desc span {
+    display: block;
+}
+
+.certificate-short-desc strong,
+.certificate-subtitle {
+    color: var(--brand);
+}
+
+.certificate-short-desc strong,
+.certificate-subtitle {
+    font-weight: 800;
+}
+
+.certificate-subtitle {
+    margin: 0.50rem 0 0;
+    font-size: 1.3rem;
+}
+
+body.light-mode .site-header {
+    background: rgba(255, 255, 255, 0.78)
+}
+
+body.light-mode .nav-links a,
+body.light-mode .footer-links a,
+body.light-mode .contact-list a,
+body.light-mode .contact-list div {
+    color: var(--muted)
+}
+
+body.light-mode .contact-form input,
+body.light-mode .contact-form textarea {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--ink);
+    border-color: var(--line)
+}
+
+body.light-mode .footer {
+    background: var(--surface)
+}
+
+.certificate-detail {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.45s ease, opacity 0.3s ease, padding 0.3s ease;
+    padding: 0 1.5rem;
+}
+
+.certificate-image {
+    display: block;
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    border-radius: 12px;
+    background: white;
+    border: 1px solid #dfe3ea;
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+}
+
+.certificate-card.is-expanded .certificate-detail {
+    max-height: 1600px;
+    opacity: 1;
+    padding: 0 1.5rem 1.5rem;
+}
+
+.certificate-card.is-expanded .toggle-label {
+    content: "Hide certificate";
+    background: rgba(86, 197, 156, 0.12);
+    border-color: rgba(86, 197, 156, 0.3);
+    color: #9de7c4;
+}
+
+.certificate-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+}
+
+.company-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.brand-mark {
+    position: relative;
+    width: 52px;
+    height: 52px;
+    display: inline-block;
+    background: transparent;
+}
+
+.brand-mark .triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-bottom: 22px solid #2f80ed;
+    transform-origin: center;
+}
+
+.brand-mark .triangle.one {
+    left: 12px;
+    top: 18px;
+    border-bottom-color: #2d9cdb;
+    transform: rotate(180deg);
+}
+
+.brand-mark .triangle.two {
+    left: 0;
+    top: 18px;
+    border-bottom-color: #27ae60;
+    transform: rotate(-60deg);
+}
+
+.brand-mark .triangle.three {
+    right: 0;
+    top: 18px;
+    border-bottom-color: #f2994a;
+    transform: rotate(60deg);
+}
+
+.company-brand h3 {
+    font-size: clamp(1.5rem, 2vw, 2.2rem);
+    margin: 0;
+    letter-spacing: -.04em;
+}
+
+.company-brand p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+.company-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1d2433;
+    text-align: right;
+}
+
+.certificate-title-wrap {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 1.5rem 0 1rem;
+    text-align: center;
+}
+
+.certificate-title-wrap h3 {
+    flex: 1;
+    text-align: center;
+    font-size: clamp(2rem, 3vw, 3rem);
+    letter-spacing: -.04em;
+    margin: 0;
+}
+
+.date-pill {
+    background: #f2f4f8;
+    border: 1px solid #dfe3ea;
+    color: #1a1f2b;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 999px;
+    padding: 0.65rem 1rem;
+    white-space: nowrap;
+}
+
+.certificate-body {
+    color: #1d2433;
+    font-size: 1.02rem;
+    line-height: 1.7;
+}
+
+.certificate-body p {
+    margin: 0 0 1.2rem;
+}
+
+.certificate-body strong {
+    font-weight: 800;
+}
+
+.certificate-signature-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    padding-top: 1rem;
+}
+
+.signature-block {
+    min-width: 220px;
+}
+
+.signature {
+    font-family: 'Segoe Print', 'Bradley Hand', cursive;
+    font-size: 2.2rem;
+    line-height: 1;
+    color: #1d2739;
+    margin-bottom: 0.5rem;
+    transform: rotate(-8deg);
+}
+
+.signature-block p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.award-badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.badge {
+    min-width: 150px;
+    padding: 1rem 0.9rem;
+    border-radius: 50%;
+    text-align: center;
+    border: 3px solid #d9b764;
+    background: linear-gradient(145deg, #f7e7a8, #d7a53a);
+    color: #1b1b1b;
+    box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.badge-primary {
+    background: linear-gradient(145deg, #fef5d5, #d0a63b);
+}
+
+.badge-secondary {
+    background: linear-gradient(145deg, #f8f8f8, #d8d8d8);
+    border-color: #adadad;
+}
+
+.badge-label {
+    display: block;
+    font-weight: 800;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.2rem;
+}
+
+.badge small {
+    font-size: 0.68rem;
+    font-weight: 700;
+}
+
+.certificate-footer {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #d7dbe3;
+    font-weight: 600;
+    color: #2d3748;
+    flex-wrap: wrap;
+}
+
+.certificate-footer span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+@media (max-width: 800px) {
+    .certificate-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .certificate-header,
+    .certificate-title-wrap,
+    .certificate-signature-row,
+    .certificate-footer {
+        display: grid;
+        gap: 1rem;
+    }
+
+    .company-name,
+    .certificate-title-wrap h3 {
+        text-align: left;
+    }
+
+    .certificate-title-wrap {
+        align-items: start;
+    }
+
+    .award-badges {
+        justify-content: flex-start;
+    }
+}
+
 .contact-section {
-    background: var(--ink);
-    color: white
+    background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface) 100%);
+    color: var(--ink)
 }
 
 .contact-section .eyebrow,
 .contact-section .section-title span {
-    color: #9f9aff
+    color: var(--brand)
 }
 
 .contact-section p {
-    color: #b8c0d3
+    color: var(--muted)
 }
 
 .contact-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5rem
+    gap: 5rem;
+    align-items: stretch;
 }
 
 .contact-list {
@@ -523,27 +998,32 @@ a {
 .contact-list div {
     display: flex;
     align-items: center;
-    gap: 1rem
+    gap: 1rem;
+    color: var(--ink)
 }
 
 .contact-list i {
-    color: #9f9aff;
+    color: var(--brand);
     width: 20px
 }
 
 .contact-form {
-    background: white;
+    background: var(--surface-2);
     color: var(--ink);
     padding: 2rem;
-    border-radius: 14px;
+    border-radius: 18px;
     display: grid;
-    gap: .5rem
+    gap: .5rem;
+    border: 1px solid var(--line);
+    box-shadow: 0 16px 32px rgba(2, 6, 23, 0.22);
+    align-self: stretch;
 }
 
 .contact-form label {
     font-size: .8rem;
     font-weight: 700;
-    margin-top: .5rem
+    margin-top: .5rem;
+    color: var(--ink)
 }
 
 .contact-form input,
@@ -552,7 +1032,9 @@ a {
     border: 1px solid var(--line);
     border-radius: 7px;
     padding: .75rem;
-    resize: vertical
+    resize: vertical;
+    background: var(--white);
+    color: var(--ink)
 }
 
 .contact-form input:focus,
@@ -563,8 +1045,9 @@ a {
 
 .footer {
     padding: 3rem 0 1.3rem;
-    background: #101725;
-    color: white
+    background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface) 100%);
+    color: var(--ink);
+    border-top: 1px solid var(--line);
 }
 
 .footer-inner {
@@ -576,7 +1059,7 @@ a {
 
 .footer p,
 .copyright {
-    color: #8993a8;
+    color: var(--muted);
     font-size: .85rem
 }
 
@@ -584,11 +1067,16 @@ a {
     display: flex;
     gap: 1.2rem;
     font-size: .85rem;
-    color: #c4cada
+    color: var(--muted)
+}
+
+.footer-links a {
+    color: var(--muted);
+    opacity: 0.9;
 }
 
 .copyright {
-    border-top: 1px solid #ffffff14;
+    border-top: 1px solid var(--line);
     margin-top: 2rem;
     padding-top: 1.3rem;
     text-align: center
