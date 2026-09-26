@@ -3,11 +3,16 @@
 <header class="site-header" id="home">
   <nav class="nav container" aria-label="Main navigation">
     <a class="brand" href="#home">YS<span>.</span></a>
-    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false"><i
+    <div class="nav-actions">
+      <button class="theme-toggle" type="button" aria-label="Toggle theme" aria-pressed="false" title="Toggle theme">
+        <i class="fa-solid fa-lightbulb"></i>
+      </button>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false"><i
         class="fa-solid fa-bars"></i></button>
+    </div>
     <div class="nav-links">
       <a class="active" href="#home">Home</a><a href="#about">About</a><a href="#education">Education</a><a
-        href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+        href="#skills">Skills</a><a href="#projects">Projects</a><a href="#certifications">Certificate</a><a href="#contact">Contact</a>
     </div>
   </nav>
 </header>
@@ -15,7 +20,7 @@
   <section class="hero section container reveal">
     <div class="hero-copy">
       <p class="eyebrow">Hello, I’m</p>
-      <h1>M. <span>Yuvashankar</span></h1>
+      <h1>M.<span>Yuvashankar</span></h1>
       <h2>B.Tech AI&amp;DS | Python Full-Stack Developer</h2>
       <p class="lead">A motivated Artificial Intelligence and Data Science graduate who enjoys building responsive,
         user-friendly web applications and solving real-world problems through technology.</p>
@@ -23,15 +28,14 @@
             class="fa-solid fa-arrow-right"></i></a><a class="btn outline"
           href="{{ url_for('download_resume') }}">Download Resume <i class="fa-solid fa-download"></i></a></div>
       <div class="socials"><a href="mailto:yuvabala54@gmail.com" aria-label="Email"><i
-            class="fa-solid fa-envelope"></i></a><a href="https://github.com/Yuvashankar-bit" target="_blank"
-          rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a><span
-          class="social-placeholder" title="Social links will be added later"><i
-            class="fa-brands fa-linkedin-in"></i></span></div>
+        class="fa-solid fa-envelope"></i></a><a href="https://github.com/Yuvashankar-bit" target="_blank"
+          rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a><a href="https://www.linkedin.com/in/m-yuva-shankar-3973362a9" target="_blank"
+          rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a></div>
     </div>
     <div class="hero-art">
       <div class="orb orb-one"></div>
       <div class="orb orb-two"></div>
-      <div class="profile-placeholder"><i class="fa-solid fa-user"></i><small>Profile photo<br>coming soon</small></div>
+      <img class="profile-image" src="{{ url_for('static', filename='images/profile.png') }}" alt="M. Yuvashankar profile picture">
       <div class="floating-badge"><i class="fa-solid fa-code"></i><span>Build. Learn.<br>Grow.</span></div>
     </div>
   </section>
@@ -88,7 +92,6 @@
           <p>Problem solving · Adaptability · Continuous learning</p>
         </article>
       </div>
-      <p class="note"><i class="fa-solid fa-circle-info"></i> More skills will be added from your resume.</p>
     </div>
   </section>
   <section class="section muted" id="projects">
@@ -135,7 +138,8 @@
           <p>Developed a front-end e-commerce interface replicating core Amazon-style features, including product
             listings and a shopping layout with responsive UI design.</p>
           <div class="project-links">
-            <span class="project-status muted-status">GitHub link coming soon</span>
+            <a class="btn project-btn" href="https://github.com/Yuvashankar-bit/amazon-clone-frontend" target="_blank"
+              rel="noopener">View Project</a>
           </div>
         </article>
 
@@ -156,10 +160,42 @@
     <div class="container reveal">
       <p class="eyebrow">05 — Certifications &amp; achievements</p>
       <h2 class="section-title">Milestones to <span>celebrate.</span></h2>
-      <div class="empty-state compact"><i class="fa-solid fa-award"></i>
-        <h3>Details coming soon</h3>
-        <p>Certifications and achievements will be added after your resume is available.</p>
-      </div>
+
+      <article class="certificate-card is-collapsed">
+        <button class="certificate-toggle" type="button" aria-expanded="false">
+          <div class="certificate-summary">
+            <div>
+              <p class="eyebrow small">Internship</p>
+              <h3>Front-End Development Internship</h3>
+              <p class="certificate-subtitle">Cognifyz IT Solutions</p>
+            </div>
+            <span class="toggle-label">View certificate</span>
+          </div>
+          <p class="certificate-short-desc">
+            <span>Completed a Front-End Development Internship.</span>
+            <span>Built user-friendly interfaces and completed structured development assignments.</span>
+          </p>
+        </button>
+
+        <div class="certificate-detail">
+          <img class="certificate-image" src="{{ url_for('static', filename='images/M_Yuvashankar_Certificate.png') }}" alt="Internship completion certificate for M. Yuvashankar">
+        </div>
+      </article>
+
+      <article class="certificate-card course-card">
+        <div class="certificate-summary">
+          <div>
+            <p class="eyebrow small">Course</p>
+            <h3>Python Full Stack Development</h3>
+            <p class="certificate-subtitle">Elysium Academy Tirunelveli</p>
+          </div>
+          <span class="tag">Completed</span>
+        </div>
+        <p class="certificate-short-desc">
+          <span>Completed practical training in Python Full Stack Development.</span>
+          <span>Covered frontend, Flask, Django, and MySQL development.</span>
+        </p>
+      </article>
     </div>
   </section>
   <section class="section contact-section" id="contact">
@@ -187,15 +223,15 @@
 </main>
 <footer class="footer">
   <div class="container footer-inner">
-    <div><a class="brand" href="#home">MY<span>.</span></a>
+    <div><a class="brand" href="#home">YS<span>.</span></a>
       <p>B.Tech AI&amp;DS | Python Full-Stack Developer</p>
     </div>
     <div class="footer-links"><a href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a><a
         href="#projects">Projects</a><a href="#contact">Contact</a></div>
-    <div class="socials"><a href="mailto:yuvabala54@gmail.com" aria-label="Email"><i
+        <div class="socials"><a href="mailto:yuvabala54@gmail.com" aria-label="Email"><i
           class="fa-solid fa-envelope"></i></a><a href="https://github.com/Yuvashankar-bit" target="_blank"
-          rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a><span class="social-placeholder"><i
-          class="fa-brands fa-linkedin-in"></i></span></div>
+          rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a><a href="https://www.linkedin.com/in/m-yuva-shankar-3973362a9" target="_blank"
+          rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a></div>
   </div>
   <div class="container copyright">© <span id="year"></span> M. Yuvashankar. All Rights Reserved.</div>
 </footer>
