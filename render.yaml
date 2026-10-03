@@ -15,11 +15,11 @@ services:
       - key: EMAIL_PORT
         value: "587"
       - key: EMAIL_USERNAME
-        sync: false
+        value: "your-gmail@gmail.com"
       - key: EMAIL_PASSWORD
-        sync: false
+        value: "your-gmail-app-password"
       - key: EMAIL_RECEIVER
-        sync: false
+        value: "your-gmail@gmail.com"
       - key: EMAIL_USE_TLS
         value: "true"
       - key: EMAIL_USE_SSL
