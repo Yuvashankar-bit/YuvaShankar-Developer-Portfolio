@@ -461,3 +461,6 @@ This project is created for personal portfolio and educational purposes.
 <p align="center">
   <b>Built with Python, Flask, HTML, CSS & JavaScript ❤️</b>
 </p>
+=======
+### 🎓 Student
+>>>>>>> 3b3c25d (Add Render deployment config)
