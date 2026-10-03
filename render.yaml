@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: yuva-shankar-portfolio
+    name: yuvashankar-portfolio
     env: python
     plan: free
     buildCommand: pip install -r requirements.txt
