@@ -16,6 +16,8 @@ def send_contact_email(name, email, subject, message):
     username = app.config.get('EMAIL_USERNAME', '').strip()
     password = app.config.get('EMAIL_PASSWORD', '').strip()
     receiver = app.config.get('EMAIL_RECEIVER', '').strip()
+    use_ssl = bool(app.config.get('EMAIL_USE_SSL', False))
+    use_tls = bool(app.config.get('EMAIL_USE_TLS', True))
 
     if not host or not username or not password or not receiver:
         app.logger.warning('SMTP settings are incomplete; contact email was not sent.')
@@ -35,10 +37,16 @@ def send_contact_email(name, email, subject, message):
     msg.attach(MIMEText(body, 'plain'))
 
     try:
-        with smtplib.SMTP(host, int(port)) as server:
-            server.starttls()
-            server.login(username, password)
-            server.send_message(msg)
+        if use_ssl:
+            with smtplib.SMTP_SSL(host, int(port), timeout=20) as server:
+                server.login(username, password)
+                server.send_message(msg)
+        else:
+            with smtplib.SMTP(host, int(port), timeout=20) as server:
+                if use_tls:
+                    server.starttls()
+                server.login(username, password)
+                server.send_message(msg)
         return 'sent'
     except Exception:
         app.logger.exception('Failed to send contact email through SMTP.')
@@ -69,11 +77,17 @@ def submit_contact():
         flash('Please enter a valid email address.', 'error')
         return redirect(url_for('index') + '#contact')
 
-    sent = send_contact_email(name, email, subject, message)
+    try:
+        sent = send_contact_email(name, email, subject, message)
+    except Exception:
+        app.logger.exception('Unexpected error while processing contact form submission.')
+        flash('Something went wrong while sending your message. Please try again later.', 'error')
+        return redirect(url_for('index') + '#contact')
+
     app.logger.info('Contact form received from %s (%s): %s', name, email, subject)
 
     if sent == 'missing-config':
-        flash('Your message was received, but the email delivery is not configured yet. Please set your SMTP details in .env.', 'error')
+        flash('Your message was received, but the email delivery is not configured yet. Please set your SMTP details in Render or .env.', 'error')
         return redirect(url_for('index') + '#contact')
     if sent == 'smtp-error':
         flash('Your message was received, but the email service could not deliver it. Please try again later.', 'error')
